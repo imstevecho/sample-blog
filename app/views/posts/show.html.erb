@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+
+<h2 class="title"><%= @post.title %></h2>
+
+<p><%= @post.body %></p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back to home', posts_path %>
+
+<div class="comments mt-5">
+  <span class="font-bold">Comments (<%= @post.comments.count %>)</span>
+  <%= render @post.comments %>
+</div>
+
+<% if user_signed_in? %>
+<div class="comment-form mt-5">
+  <span>Add New Comment</span>
+  <br/>
+  <%= render 'comments/form' %>
+</div>
+<% else %>
+  <p>Please <%= link_to "sign in", new_user_session_path %> to add a comment</p>
+<% end %>

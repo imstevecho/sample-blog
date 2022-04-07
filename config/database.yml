@@ -1,0 +1,31 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  timeout: 5000
+
+
+development: 
+  <<: *default
+  database: blog_demo_development
+  username: stevecho
+  password:
+
+
+test: 
+  <<: *default
+  database: blog_demo_test
+  username: stevecho
+  password:
+
+
+staging: 
+  <<: *default
+  database: blog_demo_production
+  host: ENV["DATABASE_URL"]
+
+
+production: 
+  <<: *default
+  database: blog_demo_production
+  host: ENV["DATABASE_URL"]

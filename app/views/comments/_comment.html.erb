@@ -1,0 +1,9 @@
+<div class="comment">
+  <article class="blog-comment mt-2">
+    <p><%= comment.body %></p>
+    <p class="font-italic">by <%= comment.user.username %> at <%= display_date_time(comment.created_at) %></p>
+    <% if my_article?(comment) %>    
+      <%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: "Are you sure?"} %>
+    <% end %>
+  </article>
+</div>
